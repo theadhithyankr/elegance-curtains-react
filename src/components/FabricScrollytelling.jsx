@@ -129,6 +129,14 @@ export default function FabricScrollytelling() {
   const [paused, setPaused] = useState(false);
   const timerRef = useRef(null);
 
+  // Preload all slide images on mount so navigation is instant
+  useEffect(() => {
+    ITEMS.forEach(({ image }) => {
+      const img = new Image();
+      img.src = image;
+    });
+  }, []);
+
   const go = (next) => {
     clearInterval(timerRef.current);
     setDir(next > index ? 1 : -1);
@@ -176,8 +184,9 @@ export default function FabricScrollytelling() {
             src={item.image}
             alt={item.name}
             className="h-full w-full object-cover"
-            loading={index === 0 ? 'eager' : 'lazy'}
-            decoding={index === 0 ? 'sync' : 'async'}
+            loading="eager"
+            decoding="async"
+            fetchpriority={index === 0 ? 'high' : 'low'}
           />
           {/* Vignette overlays */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian/85 via-obsidian/30 to-obsidian/60" />

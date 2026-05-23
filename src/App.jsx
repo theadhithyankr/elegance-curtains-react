@@ -10,7 +10,6 @@ import VideoShowcase from './components/VideoShowcase.jsx';
 import HorizontalPortfolio from './components/HorizontalPortfolio.jsx';
 import StackingFooter from './components/StackingFooter.jsx';
 import StickyMobileCTA from './components/StickyMobileCTA.jsx';
-import CustomCursor from './components/CustomCursor.jsx';
 import Loader from './components/Loader.jsx';
 import SmoothScroll from './components/SmoothScroll.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
@@ -22,7 +21,6 @@ export default function App() {
 
       <SmoothScroll />
       <Loader />
-      <CustomCursor />
       <ScrollProgress />
 
       <div className="relative">
