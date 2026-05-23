@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #070708;
+  color: #faf6f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #c9a55c;
+  color: #070708;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070708;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a55c;
+  border-radius: 4px;
+}
+
+/* Tap-target feel on mobile */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Accessibility — champagne focus ring only when navigating via keyboard */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid #c9a55c;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link — hidden until focused */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -3rem;
+  z-index: 200;
+  background: #c9a55c;
+  color: #070708;
+  padding: 0.6rem 1rem;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  transition: top 0.25s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: none;
+}
