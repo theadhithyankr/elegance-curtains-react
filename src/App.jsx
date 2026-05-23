@@ -29,8 +29,8 @@ export default function App() {
         <main id="main" tabIndex={-1} className="relative z-10 outline-none">
           <Hero />
           <Philosophy />
-          <Process />
           <OurCollections />
+          <Process />
           <FabricScrollytelling />
           <BeforeAfter />
           <VideoShowcase />
