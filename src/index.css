@@ -53,6 +53,11 @@ html {
   border-radius: 2px;
 }
 
+/* Offset anchor targets so they land below the fixed nav */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 /* Skip-to-content link — hidden until focused */
 .skip-link {
   position: fixed;

@@ -21,9 +21,9 @@ export default function Navigation() {
   const { openBooking } = useBooking();
 
   const links = [
+    { href: '#collections', label: 'Store' },
     { href: '#fabrics', label: 'Fabrics' },
     { href: '#installations', label: 'Installations' },
-    { href: '#studio', label: 'Studio' },
     { href: '#contact', label: 'Contact' },
   ];
 
