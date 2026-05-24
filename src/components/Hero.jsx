@@ -57,8 +57,8 @@ export default function Hero() {
         className="absolute inset-y-0 left-0 z-20 w-1/2 origin-left"
         style={{
           background:
-            'linear-gradient(90deg, #000000 0%, #070708 60%, #0F0F11 100%)',
-          boxShadow: 'inset -40px 0 80px rgba(0,0,0,0.7)',
+            'linear-gradient(90deg, var(--hero-curtain-a) 0%, var(--hero-curtain-b) 60%, var(--hero-curtain-c) 100%)',
+          boxShadow: 'inset -40px 0 80px var(--hero-curtain-shadow)',
         }}
       >
         <CurtainFolds />
@@ -72,8 +72,8 @@ export default function Hero() {
         className="absolute inset-y-0 right-0 z-20 w-1/2 origin-right"
         style={{
           background:
-            'linear-gradient(270deg, #000000 0%, #070708 60%, #0F0F11 100%)',
-          boxShadow: 'inset 40px 0 80px rgba(0,0,0,0.7)',
+            'linear-gradient(270deg, var(--hero-curtain-a) 0%, var(--hero-curtain-b) 60%, var(--hero-curtain-c) 100%)',
+          boxShadow: 'inset 40px 0 80px var(--hero-curtain-shadow)',
         }}
       >
         <CurtainFolds />
@@ -135,7 +135,7 @@ function CurtainFolds() {
             left: `${(i / stripes.length) * 100}%`,
             width: `${100 / stripes.length}%`,
             background:
-              'linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(201,165,92,0.04) 50%, rgba(0,0,0,0.45) 100%)',
+              'linear-gradient(90deg, var(--hero-fold-edge) 0%, rgba(201,165,92,0.04) 50%, var(--hero-fold-edge) 100%)',
           }}
           className="absolute inset-y-0"
         />

@@ -6,6 +6,21 @@
     <meta name="theme-color" content="#070708" />
     <meta name="robots" content="index, follow" />
 
+    <!-- Set theme before paint to avoid a flash of the wrong colour scheme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f7f3ec' : '#070708');
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="canonical" href="https://elegantcurtainsandblinds.shop/" />
 
     <title>Elegant Curtains and Blinds — Custom Curtains & Blinds in Kerala</title>

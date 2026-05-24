@@ -2,10 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB channel triplets (so Tailwind /<alpha-value> works).
+   Dark is the default; [data-theme="light"] flips the values. */
+:root {
+  --c-obsidian: 7 7 8;
+  --c-onyx: 15 15 17;
+  --c-coal: 22 22 26;
+  --c-smoke: 34 34 42;
+  --c-champagne: 201 165 92;
+  --c-warmwhite: 250 246 240;
+  color-scheme: dark;
+
+  /* Hero curtain panel inline-style values (see Hero.jsx) */
+  --hero-curtain-a: #000000;
+  --hero-curtain-b: #070708;
+  --hero-curtain-c: #0f0f11;
+  --hero-curtain-shadow: rgba(0, 0, 0, 0.7);
+  --hero-fold-edge: rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme='light'] {
+  --c-obsidian: 247 243 236;
+  --c-onyx: 255 255 255;
+  --c-coal: 241 235 224;
+  --c-smoke: 224 216 202;
+  --c-champagne: 138 109 46;
+  --c-warmwhite: 26 26 31;
+  color-scheme: light;
+
+  --hero-curtain-a: #d8cdbb;
+  --hero-curtain-b: #e8dfce;
+  --hero-curtain-c: #f2ebdd;
+  --hero-curtain-shadow: rgba(120, 100, 60, 0.25);
+  --hero-fold-edge: rgba(120, 100, 60, 0.18);
+}
+
 html,
 body {
-  background-color: #070708;
-  color: #faf6f0;
+  background-color: rgb(var(--c-obsidian));
+  color: rgb(var(--c-warmwhite));
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,9 +51,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Smooth fade applied transiently during a theme toggle (removed after ~320ms
+   so it never interferes with scroll-driven framer-motion animations). */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 ::selection {
-  background: #c9a55c;
-  color: #070708;
+  background: rgb(var(--c-champagne));
+  color: rgb(var(--c-obsidian));
 }
 
 /* Scrollbar */
@@ -26,10 +68,10 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #070708;
+  background: rgb(var(--c-obsidian));
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9a55c;
+  background: rgb(var(--c-champagne));
   border-radius: 4px;
 }
 
@@ -48,7 +90,7 @@ html {
   outline: none;
 }
 :focus-visible {
-  outline: 2px solid #c9a55c;
+  outline: 2px solid rgb(var(--c-champagne));
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -64,8 +106,8 @@ section[id] {
   left: 1rem;
   top: -3rem;
   z-index: 200;
-  background: #c9a55c;
-  color: #070708;
+  background: rgb(var(--c-champagne));
+  color: rgb(var(--c-obsidian));
   padding: 0.6rem 1rem;
   font-size: 11px;
   letter-spacing: 0.32em;

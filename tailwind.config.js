@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        /* Black-on-black palette with champagne accent */
-        obsidian: '#070708',   // page base — deepest black
-        onyx: '#0F0F11',       // primary dark surface
-        coal: '#16161A',       // elevated surface (cards, footer top)
-        smoke: '#22222A',      // borders, dividers
-        champagne: '#C9A55C',  // accent
-        warmwhite: '#FAF6F0',  // light text on dark
+        /* Theme-aware tokens — values come from CSS variables in index.css,
+           flipped by [data-theme="light"]. Names keep their semantic role:
+           obsidian = base surface, warmwhite = primary text, champagne = accent. */
+        obsidian: 'rgb(var(--c-obsidian) / <alpha-value>)',
+        onyx: 'rgb(var(--c-onyx) / <alpha-value>)',
+        coal: 'rgb(var(--c-coal) / <alpha-value>)',
+        smoke: 'rgb(var(--c-smoke) / <alpha-value>)',
+        champagne: 'rgb(var(--c-champagne) / <alpha-value>)',
+        warmwhite: 'rgb(var(--c-warmwhite) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Cormorant Garamond', 'Georgia', 'serif'],

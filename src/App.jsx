@@ -1,4 +1,5 @@
 import { BookingProvider } from './context/BookingContext.jsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
 import Navigation from './components/Navigation.jsx';
 import Hero from './components/Hero.jsx';
 import Philosophy from './components/Philosophy.jsx';
@@ -17,6 +18,7 @@ import ScrollProgress from './components/ScrollProgress.jsx';
 
 export default function App() {
   return (
+    <ThemeProvider>
     <BookingProvider>
       <a href="#main" className="skip-link">Skip to content</a>
 
@@ -43,5 +45,6 @@ export default function App() {
         <FloatingContact />
       </div>
     </BookingProvider>
+    </ThemeProvider>
   );
 }
