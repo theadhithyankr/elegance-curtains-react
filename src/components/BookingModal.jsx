@@ -108,7 +108,7 @@ export default function BookingModal({ open, onClose, context }) {
     }
     const materialList = form.materials.length ? form.materials.join(', ') : '—';
     const message = [
-      '*New Consultation Request — Elegant Curtains and Blinds*',
+      '*New Consultation Request — elegants*',
       '',
       `*Name:* ${form.name}`,
       `*Email:* ${form.email || '—'}`,

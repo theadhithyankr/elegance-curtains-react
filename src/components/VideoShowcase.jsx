@@ -224,7 +224,7 @@ export default function VideoShowcase() {
                     </div>
                     <div className="hidden items-center gap-3 sm:flex">
                       <span className="text-[10px] uppercase tracking-widest2 text-champagne/70">
-                        Elegant Curtains and Blinds · Testimonial
+                        elegants · Testimonial
                       </span>
                       <CtrlButton onClick={toggleFullscreen} aria-label="Toggle fullscreen">
                         {fullscreen ? <ExitFullIcon /> : <EnterFullIcon />}

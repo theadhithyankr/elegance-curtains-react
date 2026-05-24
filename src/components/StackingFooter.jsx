@@ -75,7 +75,7 @@ export default function StackingFooter() {
               {PHONE_NUMBER_2} <span className="text-champagne/70">· Call</span>
             </a>
             <a
-              href={whatsappLink('Hello — I would like to enquire about Elegant Curtains and Blinds.')}
+              href={whatsappLink('Hello — I would like to enquire about elegants.')}
               target="_blank"
               rel="noopener noreferrer"
               className="block text-warmwhite/90 hover:text-champagne transition-colors"

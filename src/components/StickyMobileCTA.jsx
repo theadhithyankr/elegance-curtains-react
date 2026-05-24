@@ -19,7 +19,7 @@ export default function StickyMobileCTA() {
     return () => unsub();
   }, [scrollY]);
 
-  const quickPing = whatsappLink('Hello — I have a quick question about Elegant Curtains and Blinds.');
+  const quickPing = whatsappLink('Hello — I have a quick question about elegants.');
 
   return (
     <AnimatePresence>

@@ -24,7 +24,7 @@ export default function Wordmark({
       className={`group/wm font-sans inline-flex flex-col items-center leading-none ${sizes[size]} ${className}`}
     >
       <span className="relative font-serif italic font-medium text-champagne">
-        Elegant
+        elegants
         {hoverable && (
           <span
             className="pointer-events-none absolute -bottom-0.5 left-0 right-0 h-px origin-left scale-x-0 bg-champagne transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/wm:scale-x-100"
