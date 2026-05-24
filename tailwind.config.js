@@ -13,6 +13,7 @@ export default {
         smoke: 'rgb(var(--c-smoke) / <alpha-value>)',
         champagne: 'rgb(var(--c-champagne) / <alpha-value>)',
         warmwhite: 'rgb(var(--c-warmwhite) / <alpha-value>)',
+        void: 'rgb(var(--c-void) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Cormorant Garamond', 'Georgia', 'serif'],

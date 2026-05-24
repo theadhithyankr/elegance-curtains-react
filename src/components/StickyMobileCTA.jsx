@@ -29,7 +29,7 @@ export default function StickyMobileCTA() {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t border-champagne/20 bg-obsidian/95 px-4 py-3 backdrop-blur md:hidden"
+          className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t border-champagne/20 bg-void/95 px-4 py-3 backdrop-blur md:hidden"
           style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 0.75rem)' }}
         >
           <a

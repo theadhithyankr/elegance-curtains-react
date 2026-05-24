@@ -8,7 +8,7 @@ import { useTheme } from '../context/ThemeContext.jsx';
 export default function CustomCursor() {
   const reduced = useReducedMotion();
   const { theme } = useTheme();
-  const cursorRgb = theme === 'light' ? '109,40,217' : '201,165,92';
+  const cursorRgb = theme === 'light' ? '29,78,216' : '201,165,92';
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
   const sx = useSpring(x, { stiffness: 350, damping: 28, mass: 0.4 });

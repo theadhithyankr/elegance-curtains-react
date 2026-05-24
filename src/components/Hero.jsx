@@ -47,7 +47,7 @@ export default function Hero() {
           decoding="sync"
           fetchpriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/50 via-obsidian/30 to-obsidian/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void/50 via-void/30 to-void/80" />
       </motion.div>
 
       <motion.div

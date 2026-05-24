@@ -178,10 +178,10 @@ export default function VideoShowcase() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 onClick={togglePlay}
-                className="absolute inset-0 z-10 flex items-center justify-center bg-obsidian/40 backdrop-blur-[2px]"
+                className="absolute inset-0 z-10 flex items-center justify-center bg-void/40 backdrop-blur-[2px]"
                 aria-label="Play video"
               >
-                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-champagne/70 bg-obsidian/40 text-champagne transition-colors group-hover:bg-champagne group-hover:text-obsidian sm:h-24 sm:w-24">
+                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-champagne/70 bg-void/40 text-champagne transition-colors group-hover:bg-champagne group-hover:text-obsidian sm:h-24 sm:w-24">
                   <PlayIcon className="h-7 w-7 translate-x-0.5" />
                 </span>
               </motion.button>
@@ -199,7 +199,7 @@ export default function VideoShowcase() {
                 className="absolute inset-x-0 bottom-0 z-10"
               >
                 {/* Gradient base so controls remain legible over bright frames */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-void via-void/60 to-transparent" />
 
                 <div className="relative px-4 pb-3 pt-8 sm:px-6 sm:pb-4 sm:pt-10">
                   {/* Seek bar */}

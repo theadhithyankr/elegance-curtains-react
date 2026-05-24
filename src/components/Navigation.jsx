@@ -9,7 +9,7 @@ export default function Navigation() {
   const { theme, toggleTheme } = useTheme();
   const { scrollY } = useScroll();
   const baseRgb = theme === 'light' ? '255,255,255' : '7,7,8';
-  const accentRgb = theme === 'light' ? '109,40,217' : '201,165,92';
+  const accentRgb = theme === 'light' ? '29,78,216' : '201,165,92';
   const bg = useTransform(
     scrollY,
     [0, 200],
@@ -95,7 +95,7 @@ export default function Navigation() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-champagne/15 bg-obsidian/95 backdrop-blur-md md:hidden"
+            className="overflow-hidden border-t border-champagne/15 bg-void/95 backdrop-blur-md md:hidden"
           >
             <nav className="flex flex-col gap-5 px-6 py-8 text-sm uppercase tracking-widest2">
               {links.map((l) => (

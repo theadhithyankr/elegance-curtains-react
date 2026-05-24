@@ -81,7 +81,7 @@ export default function BeforeAfter() {
             decoding="async"
             draggable="false"
           />
-          <span className="absolute left-4 top-4 z-10 border border-warmwhite/30 bg-obsidian/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-warmwhite/90 backdrop-blur-sm">
+          <span className="absolute left-4 top-4 z-10 border border-warmwhite/30 bg-void/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-warmwhite/90 backdrop-blur-sm">
             Before
           </span>
 
@@ -100,7 +100,7 @@ export default function BeforeAfter() {
             />
           </div>
 
-          <span className="absolute right-4 top-4 z-10 border border-champagne/60 bg-obsidian/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-champagne backdrop-blur-sm">
+          <span className="absolute right-4 top-4 z-10 border border-champagne/60 bg-void/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-champagne backdrop-blur-sm">
             After
           </span>
 
@@ -125,7 +125,7 @@ export default function BeforeAfter() {
             className="absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize"
           >
             <span className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-champagne shadow-[0_0_10px_rgb(var(--c-champagne)/0.6)]" />
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-obsidian/80 ring-1 ring-champagne backdrop-blur-md">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-void/80 ring-1 ring-champagne backdrop-blur-md">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A55C" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <polyline points="9 6 3 12 9 18" />
                 <polyline points="15 6 21 12 15 18" />

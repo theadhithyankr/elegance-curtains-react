@@ -62,7 +62,7 @@ function ProductCard({ name, img, desc, index, onPreview }) {
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-coal/80 via-transparent to-transparent pointer-events-none" />
-        <span className="absolute bottom-4 right-4 border border-champagne/45 bg-obsidian/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+        <span className="absolute bottom-4 right-4 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
           View
         </span>
       </button>

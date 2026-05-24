@@ -189,8 +189,8 @@ export default function FabricScrollytelling() {
             fetchpriority={index === 0 ? 'high' : 'low'}
           />
           {/* Vignette overlays */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian/85 via-obsidian/30 to-obsidian/60" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-void/85 via-void/30 to-void/60" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-transparent to-void/40" />
         </motion.div>
       </AnimatePresence>
 

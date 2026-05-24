@@ -79,7 +79,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
               type="button"
               aria-label="Close preview"
               onClick={onClose}
-              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center bg-obsidian/70 text-champagne backdrop-blur transition-colors hover:text-warmwhite"
+              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center bg-void/70 text-champagne backdrop-blur transition-colors hover:text-warmwhite"
             >
               <span className="relative block h-px w-5 rotate-45 bg-current" />
               <span className="absolute h-px w-5 -rotate-45 bg-current" />
@@ -105,7 +105,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                   }}
                 />
               </AnimatePresence>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/15" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-void/15" />
 
               {items.length > 1 && (
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">
@@ -113,7 +113,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                     type="button"
                     onClick={prev}
                     aria-label="Previous image"
-                    className="flex h-10 w-10 items-center justify-center border border-champagne/35 bg-obsidian/65 text-champagne backdrop-blur transition-colors hover:bg-champagne hover:text-obsidian"
+                    className="flex h-10 w-10 items-center justify-center border border-champagne/35 bg-void/65 text-champagne backdrop-blur transition-colors hover:bg-champagne hover:text-obsidian"
                   >
                     ←
                   </button>
@@ -121,7 +121,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                     type="button"
                     onClick={next}
                     aria-label="Next image"
-                    className="flex h-10 w-10 items-center justify-center border border-champagne/35 bg-obsidian/65 text-champagne backdrop-blur transition-colors hover:bg-champagne hover:text-obsidian"
+                    className="flex h-10 w-10 items-center justify-center border border-champagne/35 bg-void/65 text-champagne backdrop-blur transition-colors hover:bg-champagne hover:text-obsidian"
                   >
                     →
                   </button>

@@ -131,7 +131,7 @@ export default function HorizontalPortfolio() {
             }}
           >
             {/* Category badge */}
-            <span className="absolute left-4 top-4 z-10 border border-champagne/50 bg-obsidian/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-champagne backdrop-blur-sm sm:left-6 sm:top-6">
+            <span className="absolute left-4 top-4 z-10 border border-champagne/50 bg-void/60 px-3 py-1 text-[10px] uppercase tracking-widest2 text-champagne backdrop-blur-sm sm:left-6 sm:top-6">
               {item.category}
             </span>
 
@@ -148,8 +148,8 @@ export default function HorizontalPortfolio() {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
-              <span className="absolute bottom-5 right-5 border border-champagne/45 bg-obsidian/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
+              <span className="absolute bottom-5 right-5 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
                 View
               </span>
             </button>
