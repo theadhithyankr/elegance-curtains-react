@@ -22,7 +22,7 @@ export default function Philosophy() {
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(201,165,92,0.08) 0%, rgba(7,7,8,0) 60%)',
+            'radial-gradient(ellipse at center, var(--c-glow-sm) 0%, var(--c-bg0) 60%)',
         }}
       />
 

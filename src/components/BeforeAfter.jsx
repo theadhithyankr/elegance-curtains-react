@@ -124,7 +124,7 @@ export default function BeforeAfter() {
             style={{ left: `${pos}%` }}
             className="absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize"
           >
-            <span className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-champagne shadow-[0_0_10px_rgba(201,165,92,0.6)]" />
+            <span className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-champagne shadow-[0_0_10px_rgb(var(--c-champagne)/0.6)]" />
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-obsidian/80 ring-1 ring-champagne backdrop-blur-md">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A55C" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <polyline points="9 6 3 12 9 18" />

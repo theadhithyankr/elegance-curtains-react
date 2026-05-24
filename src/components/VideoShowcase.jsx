@@ -108,7 +108,7 @@ export default function VideoShowcase() {
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(201,165,92,0.10) 0%, rgba(7,7,8,0) 60%)',
+            'radial-gradient(ellipse at center, var(--c-glow-md) 0%, var(--c-bg0) 60%)',
         }}
       />
 
@@ -277,7 +277,7 @@ function SeekBar({ current, duration, onSeek }) {
         style={{ left: `${progress}%` }}
         className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover/seek:opacity-100 transition-opacity"
       >
-        <span className="block h-3 w-3 rounded-full bg-champagne shadow-[0_0_10px_rgba(201,165,92,0.6)]" />
+        <span className="block h-3 w-3 rounded-full bg-champagne shadow-[0_0_10px_rgb(var(--c-champagne)/0.6)]" />
       </div>
     </div>
   );

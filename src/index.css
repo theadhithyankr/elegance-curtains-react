@@ -19,22 +19,35 @@
   --hero-curtain-c: #0f0f11;
   --hero-curtain-shadow: rgba(0, 0, 0, 0.7);
   --hero-fold-edge: rgba(0, 0, 0, 0.45);
+
+  /* Glow and transparent-bg helpers used in JSX inline styles */
+  --c-glow-sm:     rgba(201, 165, 92, 0.08);
+  --c-glow-md:     rgba(201, 165, 92, 0.10);
+  --c-glow-lg:     rgba(201, 165, 92, 0.18);
+  --c-fold-stripe: rgba(201, 165, 92, 0.04);
+  --c-bg0:         rgba(7, 7, 8, 0);
 }
 
 :root[data-theme='light'] {
-  --c-obsidian: 247 243 236;
-  --c-onyx: 255 255 255;
-  --c-coal: 241 235 224;
-  --c-smoke: 224 216 202;
-  --c-champagne: 138 109 46;
-  --c-warmwhite: 26 26 31;
+  --c-obsidian:  255 255 255;
+  --c-onyx:      248 246 255;
+  --c-coal:      240 237 252;
+  --c-smoke:     225 220 245;
+  --c-champagne: 109 40 217;
+  --c-warmwhite: 18 12 38;
   color-scheme: light;
 
-  --hero-curtain-a: #d8cdbb;
-  --hero-curtain-b: #e8dfce;
-  --hero-curtain-c: #f2ebdd;
-  --hero-curtain-shadow: rgba(120, 100, 60, 0.25);
-  --hero-fold-edge: rgba(120, 100, 60, 0.18);
+  --hero-curtain-a:      #c4b5f4;
+  --hero-curtain-b:      #ddd6fe;
+  --hero-curtain-c:      #ede9fe;
+  --hero-curtain-shadow: rgba(109, 40, 217, 0.18);
+  --hero-fold-edge:      rgba(109, 40, 217, 0.12);
+
+  --c-glow-sm:     rgba(109, 40, 217, 0.06);
+  --c-glow-md:     rgba(109, 40, 217, 0.07);
+  --c-glow-lg:     rgba(109, 40, 217, 0.10);
+  --c-fold-stripe: rgba(109, 40, 217, 0.04);
+  --c-bg0:         rgba(255, 255, 255, 0);
 }
 
 html,

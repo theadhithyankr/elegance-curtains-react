@@ -155,7 +155,7 @@ export default function BookingModal({ open, onClose, context }) {
               className="pointer-events-none absolute inset-0 opacity-40"
               style={{
                 background:
-                  'radial-gradient(ellipse at top right, rgba(201,165,92,0.18) 0%, rgba(7,7,8,0) 60%)',
+                  'radial-gradient(ellipse at top right, var(--c-glow-lg) 0%, var(--c-bg0) 60%)',
               }}
             />
 

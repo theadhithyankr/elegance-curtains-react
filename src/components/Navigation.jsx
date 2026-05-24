@@ -8,7 +8,8 @@ import { useTheme } from '../context/ThemeContext.jsx';
 export default function Navigation() {
   const { theme, toggleTheme } = useTheme();
   const { scrollY } = useScroll();
-  const baseRgb = theme === 'light' ? '247,243,236' : '7,7,8';
+  const baseRgb = theme === 'light' ? '255,255,255' : '7,7,8';
+  const accentRgb = theme === 'light' ? '109,40,217' : '201,165,92';
   const bg = useTransform(
     scrollY,
     [0, 200],
@@ -17,7 +18,7 @@ export default function Navigation() {
   const border = useTransform(
     scrollY,
     [0, 200],
-    ['rgba(201,165,92,0)', 'rgba(201,165,92,0.25)']
+    [`rgba(${accentRgb},0)`, `rgba(${accentRgb},0.25)`]
   );
 
   const [open, setOpen] = useState(false);

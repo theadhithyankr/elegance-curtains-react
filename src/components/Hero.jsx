@@ -135,7 +135,7 @@ function CurtainFolds() {
             left: `${(i / stripes.length) * 100}%`,
             width: `${100 / stripes.length}%`,
             background:
-              'linear-gradient(90deg, var(--hero-fold-edge) 0%, rgba(201,165,92,0.04) 50%, var(--hero-fold-edge) 100%)',
+              'linear-gradient(90deg, var(--hero-fold-edge) 0%, var(--c-fold-stripe) 50%, var(--hero-fold-edge) 100%)',
           }}
           className="absolute inset-y-0"
         />

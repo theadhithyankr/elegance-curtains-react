@@ -29,7 +29,7 @@ export default function StackingFooter() {
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           background:
-            'radial-gradient(ellipse at 70% 30%, rgba(201,165,92,0.10) 0%, rgba(7,7,8,0) 60%)',
+            'radial-gradient(ellipse at 70% 30%, var(--c-glow-md) 0%, var(--c-bg0) 60%)',
         }}
       />
 

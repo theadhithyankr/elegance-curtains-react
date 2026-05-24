@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 
-const THEME_COLORS = { dark: '#070708', light: '#f7f3ec' };
+const THEME_COLORS = { dark: '#070708', light: '#ffffff' };
 
 function getInitialTheme() {
   if (typeof document !== 'undefined') {
