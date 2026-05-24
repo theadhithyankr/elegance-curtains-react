@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const BEFORE = '/before-after/before.png';
-const AFTER = '/before-after/after.jpg';
+const BEFORE = '/before-after/after.jpg';
+const AFTER = '/before-after/before.png';
 
 export default function BeforeAfter() {
   const wrapRef = useRef(null);
