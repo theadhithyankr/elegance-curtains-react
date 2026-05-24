@@ -1,14 +1,11 @@
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeContext.jsx';
 
 /* A champagne-dot cursor that follows the mouse. Only shows on pointer:fine
  * devices, and only intensifies (with a "Scroll" label) when hovering the
  * horizontal portfolio section. */
 export default function CustomCursor() {
   const reduced = useReducedMotion();
-  const { theme } = useTheme();
-  const cursorRgb = theme === 'light' ? '29,78,216' : '201,165,92';
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
   const sx = useSpring(x, { stiffness: 350, damping: 28, mass: 0.4 });
@@ -49,7 +46,7 @@ export default function CustomCursor() {
         animate={{
           width: active ? 84 : 10,
           height: active ? 84 : 10,
-          backgroundColor: active ? `rgba(${cursorRgb},0.95)` : `rgba(${cursorRgb},1)`,
+          backgroundColor: active ? 'rgba(201,165,92,0.95)' : 'rgba(201,165,92,1)',
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="relative flex items-center justify-center rounded-full"

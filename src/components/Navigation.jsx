@@ -3,22 +3,18 @@ import { useState } from 'react';
 import Wordmark from './Wordmark.jsx';
 import MagneticButton from './MagneticButton.jsx';
 import { useBooking } from '../context/BookingContext.jsx';
-import { useTheme } from '../context/ThemeContext.jsx';
 
 export default function Navigation() {
-  const { theme, toggleTheme } = useTheme();
   const { scrollY } = useScroll();
-  const baseRgb = theme === 'light' ? '255,255,255' : '7,7,8';
-  const accentRgb = theme === 'light' ? '29,78,216' : '201,165,92';
   const bg = useTransform(
     scrollY,
     [0, 200],
-    [`rgba(${baseRgb},0)`, `rgba(${baseRgb},0.85)`]
+    ['rgba(7,7,8,0)', 'rgba(7,7,8,0.85)']
   );
   const border = useTransform(
     scrollY,
     [0, 200],
-    [`rgba(${accentRgb},0)`, `rgba(${accentRgb},0.25)`]
+    ['rgba(201,165,92,0)', 'rgba(201,165,92,0.25)']
   );
 
   const [open, setOpen] = useState(false);
@@ -55,8 +51,6 @@ export default function Navigation() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle theme={theme} onToggle={toggleTheme} />
-
           <MagneticButton className="hidden md:inline-block">
             <button
               onClick={openBooking}
@@ -125,56 +119,3 @@ export default function Navigation() {
   );
 }
 
-function ThemeToggle({ theme, onToggle }) {
-  const isLight = theme === 'light';
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
-      title={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-champagne/30 text-champagne transition-colors hover:bg-champagne/10"
-    >
-      <AnimatePresence mode="wait" initial={false}>
-        {isLight ? (
-          <motion.span
-            key="moon"
-            initial={{ rotate: -90, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            exit={{ rotate: 90, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
-            <MoonIcon />
-          </motion.span>
-        ) : (
-          <motion.span
-            key="sun"
-            initial={{ rotate: 90, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            exit={{ rotate: -90, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
-            <SunIcon />
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </button>
-  );
-}
-
-function SunIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-    </svg>
-  );
-}
-
-function MoonIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-    </svg>
-  );
-}

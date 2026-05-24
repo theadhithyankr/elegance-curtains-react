@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens as RGB channel triplets (so Tailwind /<alpha-value> works).
-   Dark is the default; [data-theme="light"] flips the values. */
+/* Theme tokens as RGB channel triplets (so Tailwind /<alpha-value> works). */
 :root {
   --c-obsidian: 7 7 8;
   --c-onyx: 15 15 17;
@@ -29,28 +28,6 @@
   --c-bg0:         rgba(7, 7, 8, 0);
 }
 
-:root[data-theme='light'] {
-  --c-obsidian:  255 255 255;
-  --c-onyx:      246 249 255;
-  --c-coal:      235 241 255;
-  --c-smoke:     214 226 255;
-  --c-champagne: 29 78 216;
-  --c-warmwhite: 10 15 40;
-  --c-void:      10 12 28;
-  color-scheme: light;
-
-  --hero-curtain-a:      #93c5fd;
-  --hero-curtain-b:      #bfdbfe;
-  --hero-curtain-c:      #dbeafe;
-  --hero-curtain-shadow: rgba(29, 78, 216, 0.18);
-  --hero-fold-edge:      rgba(29, 78, 216, 0.12);
-
-  --c-glow-sm:     rgba(29, 78, 216, 0.06);
-  --c-glow-md:     rgba(29, 78, 216, 0.07);
-  --c-glow-lg:     rgba(29, 78, 216, 0.10);
-  --c-fold-stripe: rgba(29, 78, 216, 0.04);
-  --c-bg0:         rgba(255, 255, 255, 0);
-}
 
 html,
 body {
@@ -66,12 +43,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Smooth fade applied transiently during a theme toggle (removed after ~320ms
-   so it never interferes with scroll-driven framer-motion animations). */
-.theme-transition,
-.theme-transition * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
 
 ::selection {
   background: rgb(var(--c-champagne));
@@ -90,10 +61,6 @@ body {
   border-radius: 4px;
 }
 
-/* Hide image vignette/darkening overlays in light mode — images show clean */
-[data-theme='light'] .img-overlay {
-  display: none;
-}
 
 /* Tap-target feel on mobile */
 button,
