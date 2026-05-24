@@ -31,11 +31,11 @@ export default function App() {
           <Hero />
           <OurCollections />
           <Philosophy />
-          <Process />
           <FabricScrollytelling />
           <BeforeAfter />
           <VideoShowcase />
           <HorizontalPortfolio />
+          <Process />
           <StackingFooter />
         </main>
 
