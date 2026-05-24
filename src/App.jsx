@@ -10,6 +10,7 @@ import VideoShowcase from './components/VideoShowcase.jsx';
 import HorizontalPortfolio from './components/HorizontalPortfolio.jsx';
 import StackingFooter from './components/StackingFooter.jsx';
 import StickyMobileCTA from './components/StickyMobileCTA.jsx';
+import FloatingContact from './components/FloatingContact.jsx';
 import Loader from './components/Loader.jsx';
 import SmoothScroll from './components/SmoothScroll.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
@@ -39,6 +40,7 @@ export default function App() {
         </main>
 
         <StickyMobileCTA />
+        <FloatingContact />
       </div>
     </BookingProvider>
   );
