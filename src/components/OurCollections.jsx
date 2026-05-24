@@ -34,43 +34,46 @@ function ProductCard({ name, img, desc, index, onPreview }) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: '-60px' }}
-      className="group relative overflow-hidden rounded-sm bg-coal shrink-0 w-[75vw] sm:w-auto"
+      className="group relative overflow-hidden bg-coal"
     >
       <button
         type="button"
         onClick={onPreview}
-        className="relative block w-full overflow-hidden aspect-[3/4] text-left"
+        className="flex w-full text-left"
         aria-label={`View ${name}`}
       >
-        {img ? (
-          <motion.img
-            src={img}
-            alt={name}
-            loading="lazy"
-            className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-smoke to-coal">
-            <span className="font-serif text-4xl text-champagne/30 tracking-widest select-none" aria-hidden="true">
-              {name.split(' ').map((w) => w[0]).join('')}
-            </span>
-            <span className="mt-4 text-[10px] uppercase tracking-widest text-warmwhite/25 font-sans">
-              Image coming soon
-            </span>
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-coal/80 via-transparent to-transparent pointer-events-none" />
-        <span className="absolute bottom-4 right-4 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
-          View
-        </span>
-      </button>
+        {/* Image */}
+        <div className="relative shrink-0 w-48 sm:w-64 md:w-80 aspect-[3/4] overflow-hidden">
+          {img ? (
+            <motion.img
+              src={img}
+              alt={name}
+              loading="lazy"
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-smoke to-coal">
+              <span className="font-serif text-4xl text-champagne/30 tracking-widest select-none" aria-hidden="true">
+                {name.split(' ').map((w) => w[0]).join('')}
+              </span>
+              <span className="mt-4 text-[10px] uppercase tracking-widest text-warmwhite/25 font-sans">
+                Image coming soon
+              </span>
+            </div>
+          )}
+          <span className="absolute bottom-3 right-3 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+            View
+          </span>
+        </div>
 
-      <div className="px-5 py-4">
-        <h3 className="font-serif text-lg text-champagne leading-snug">{name}</h3>
-        <p className="mt-1 text-xs font-sans text-warmwhite/60 leading-relaxed">{desc}</p>
-      </div>
+        {/* Info */}
+        <div className="flex flex-col justify-center px-6 py-6 sm:px-8 sm:py-8">
+          <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-champagne leading-snug">{name}</h3>
+          <p className="mt-2 text-xs sm:text-sm font-sans text-warmwhite/60 leading-relaxed max-w-xs">{desc}</p>
+        </div>
+      </button>
 
       <div className="absolute left-0 top-0 h-full w-[2px] bg-champagne scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500" />
     </motion.div>
@@ -97,7 +100,7 @@ function GroupHeading({ label, index }) {
 
 function SwipeRow({ items, startIndex, galleryOffset, onPreview }) {
   return (
-    <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:snap-none sm:mx-0 sm:px-0 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="flex flex-col divide-y divide-champagne/10">
       {items.map((item, i) => (
         <ProductCard
           key={item.name}
