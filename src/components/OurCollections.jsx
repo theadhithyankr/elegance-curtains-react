@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import ImageLightbox from './ImageLightbox.jsx';
 
 const CURTAINS = [
   { name: 'Sheer Curtain',    img: '/products/sheer-curtain.png',    desc: 'Diffuses light into a soft, ambient glow' },
@@ -24,7 +26,7 @@ const fadeUp = {
   }),
 };
 
-function ProductCard({ name, img, desc, index }) {
+function ProductCard({ name, img, desc, index, onPreview }) {
   return (
     <motion.div
       custom={index}
@@ -34,7 +36,12 @@ function ProductCard({ name, img, desc, index }) {
       viewport={{ once: true, margin: '-60px' }}
       className="group relative overflow-hidden rounded-sm bg-coal shrink-0 w-[75vw] sm:w-auto"
     >
-      <div className="relative overflow-hidden aspect-[3/4]">
+      <button
+        type="button"
+        onClick={onPreview}
+        className="relative block w-full overflow-hidden aspect-[3/4] text-left"
+        aria-label={`View ${name}`}
+      >
         {img ? (
           <motion.img
             src={img}
@@ -55,7 +62,10 @@ function ProductCard({ name, img, desc, index }) {
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-coal/80 via-transparent to-transparent pointer-events-none" />
-      </div>
+        <span className="absolute bottom-4 right-4 border border-champagne/45 bg-obsidian/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+          View
+        </span>
+      </button>
 
       <div className="px-5 py-4">
         <h3 className="font-serif text-lg text-champagne leading-snug">{name}</h3>
@@ -85,49 +95,81 @@ function GroupHeading({ label, index }) {
   );
 }
 
-function SwipeRow({ items, startIndex }) {
+function SwipeRow({ items, startIndex, galleryOffset, onPreview }) {
   return (
     <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:snap-none sm:mx-0 sm:px-0 lg:grid-cols-3 xl:grid-cols-4">
       {items.map((item, i) => (
-        <ProductCard key={item.name} {...item} index={startIndex + i} />
+        <ProductCard
+          key={item.name}
+          {...item}
+          index={startIndex + i}
+          onPreview={() => onPreview(galleryOffset + i)}
+        />
       ))}
     </div>
   );
 }
 
 export default function OurCollections() {
+  const [previewIndex, setPreviewIndex] = useState(0);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const galleryItems = [
+    ...CURTAINS.map((item) => ({ ...item, title: item.name, image: item.img, category: 'Curtains' })),
+    ...BLINDS.map((item) => ({ ...item, title: item.name, image: item.img, category: 'Blinds' })),
+  ];
+
+  const openPreview = (index) => {
+    setPreviewIndex(index);
+    setPreviewOpen(true);
+  };
+
   return (
-    <section
-      id="collections"
-      className="relative bg-onyx py-24 md:py-32 px-6 md:px-12 lg:px-20"
-    >
-      <motion.div
-        variants={fadeUp}
-        custom={0}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
-        className="mb-16 md:mb-20"
+    <>
+      <section
+        id="collections"
+        className="relative bg-onyx py-24 md:py-32 px-6 md:px-12 lg:px-20"
       >
-        <p className="font-sans text-[10px] uppercase tracking-widest2 text-champagne mb-4">
-          What We Offer
-        </p>
-        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-warmwhite leading-tight max-w-lg">
-          Our Collections
-        </h2>
-      </motion.div>
+        <motion.div
+          variants={fadeUp}
+          custom={0}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mb-16 md:mb-20"
+        >
+          <p className="font-sans text-[10px] uppercase tracking-widest2 text-champagne mb-4">
+            What We Offer
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-warmwhite leading-tight max-w-lg">
+            Our Collections
+          </h2>
+        </motion.div>
 
-      <div className="space-y-12 md:space-y-16">
-        <div>
-          <GroupHeading label="Curtains" index={1} />
-          <SwipeRow items={CURTAINS} startIndex={2} />
-        </div>
+        <div className="space-y-12 md:space-y-16">
+          <div>
+            <GroupHeading label="Curtains" index={1} />
+            <SwipeRow items={CURTAINS} startIndex={2} galleryOffset={0} onPreview={openPreview} />
+          </div>
 
-        <div>
-          <GroupHeading label="Blinds" index={CURTAINS.length + 2} />
-          <SwipeRow items={BLINDS} startIndex={CURTAINS.length + 3} />
+          <div>
+            <GroupHeading label="Blinds" index={CURTAINS.length + 2} />
+            <SwipeRow
+              items={BLINDS}
+              startIndex={CURTAINS.length + 3}
+              galleryOffset={CURTAINS.length}
+              onPreview={openPreview}
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <ImageLightbox
+        open={previewOpen}
+        items={galleryItems}
+        index={previewIndex}
+        onClose={() => setPreviewOpen(false)}
+        onIndexChange={setPreviewIndex}
+      />
+    </>
   );
 }

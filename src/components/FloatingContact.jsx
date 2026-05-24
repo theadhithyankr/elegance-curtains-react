@@ -36,7 +36,7 @@ export default function FloatingContact() {
   return (
     <div
       ref={ref}
-      className="fixed bottom-8 right-8 z-50 hidden md:flex flex-col items-end gap-3"
+      className="fixed bottom-[4.5rem] right-4 z-50 flex flex-col items-end gap-3 md:bottom-8 md:right-8"
     >
       {/* Popup card */}
       <AnimatePresence>

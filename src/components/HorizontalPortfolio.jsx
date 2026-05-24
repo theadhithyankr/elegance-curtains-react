@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ImageLightbox from './ImageLightbox.jsx';
 
 const INSTALLATIONS = [
   {
@@ -65,6 +66,7 @@ const slideVariants = {
 export default function HorizontalPortfolio() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const go = (next) => {
     setDir(next > index ? 1 : -1);
@@ -122,7 +124,7 @@ export default function HorizontalPortfolio() {
             initial="enter"
             animate="center"
             exit="exit"
-            className="relative w-full overflow-hidden bg-coal ring-1 ring-champagne/20"
+            className="group relative w-full overflow-hidden bg-coal ring-1 ring-champagne/20"
             onPanEnd={(_, info) => {
               if (info.offset.x < -50) next();
               else if (info.offset.x > 50) prev();
@@ -133,7 +135,12 @@ export default function HorizontalPortfolio() {
               {item.category}
             </span>
 
-            <div className="relative overflow-hidden h-[55vw] max-h-[70vh] min-h-[280px]">
+            <button
+              type="button"
+              onClick={() => setPreviewOpen(true)}
+              className="relative block w-full overflow-hidden h-[55vw] max-h-[70vh] min-h-[280px] text-left"
+              aria-label={`View ${item.title}`}
+            >
               <img
                 src={item.image}
                 alt={item.title}
@@ -142,7 +149,10 @@ export default function HorizontalPortfolio() {
                 decoding="async"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
-            </div>
+              <span className="absolute bottom-5 right-5 border border-champagne/45 bg-obsidian/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                View
+              </span>
+            </button>
 
             <figcaption className="flex items-end justify-between gap-4 px-6 py-6 sm:px-10 sm:py-8 md:px-12">
               <div>
@@ -193,6 +203,14 @@ export default function HorizontalPortfolio() {
           →
         </button>
       </div>
+
+      <ImageLightbox
+        open={previewOpen}
+        items={INSTALLATIONS}
+        index={index}
+        onClose={() => setPreviewOpen(false)}
+        onIndexChange={go}
+      />
     </section>
   );
 }

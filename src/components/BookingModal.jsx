@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import Wordmark from './Wordmark.jsx';
 import { whatsappLink, WHATSAPP_DISPLAY } from '../lib/contact.js';
 
-const PROJECT_TYPES = ['Curtains', 'Blinds', 'Both'];
+const PROJECT_TYPES = ['Curtains', 'Blinds', 'Both', 'Other'];
 const TIME_PREFS = ['Morning', 'Afternoon', 'Evening'];
+const AUTOMATION_PREFS = ['No', 'Yes', 'Not sure'];
+const CURTAIN_MATERIALS = ['Blackout Fabric', 'Cotton', 'Linen', 'Sheer Fabric', 'Silk', 'Velvet', 'Other'];
+const BLIND_MATERIALS = ['Real Wood', 'Aluminium', 'Bamboo', 'Faux Wood', 'PVC / Vinyl', 'Solar Screen', 'Other'];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function BookingModal({ open, onClose }) {
+export default function BookingModal({ open, onClose, context }) {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: '',
@@ -17,7 +20,13 @@ export default function BookingModal({ open, onClose }) {
     postcode: '',
     windows: '',
     type: 'Curtains',
+    otherType: '',
+    materials: [],
+    otherCurtainMaterial: '',
+    otherBlindMaterial: '',
+    automation: 'No',
     time: 'Morning',
+    source: '',
     notes: '',
   });
   const [errors, setErrors] = useState({});
@@ -25,11 +34,11 @@ export default function BookingModal({ open, onClose }) {
   const validate = (f) => {
     const e = {};
     if (!f.name.trim()) e.name = 'Please tell us your name.';
-    if (!f.email.trim()) e.email = 'An email is needed for our reply.';
-    else if (!EMAIL_RE.test(f.email.trim())) e.email = 'That email looks off.';
+    if (f.email.trim() && !EMAIL_RE.test(f.email.trim())) e.email = 'That email looks off.';
     return e;
   };
-  const canSubmit = !validate(form).name && !validate(form).email;
+  const formErrors = validate(form);
+  const canSubmit = !formErrors.name && !formErrors.email;
 
   // Lock body scroll while modal is open
   useEffect(() => {
@@ -52,11 +61,43 @@ export default function BookingModal({ open, onClose }) {
     }
   }, [open, submitted]);
 
+  useEffect(() => {
+    if (!open) return;
+    if (!context) {
+      setForm((f) => ({ ...f, source: '' }));
+      return;
+    }
+    setForm((f) => ({
+      ...f,
+      type: context.projectType || f.type,
+      source: [context.sourceCategory, context.sourceTitle].filter(Boolean).join(' · '),
+    }));
+  }, [open, context]);
+
   const onChange = (k) => (e) => {
     const v = e.target.value;
     setForm((f) => ({ ...f, [k]: v }));
     if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }));
   };
+
+  const toggleMaterial = (material) => {
+    setForm((f) => ({
+      ...f,
+      materials: f.materials.includes(material)
+        ? f.materials.filter((item) => item !== material)
+        : [...f.materials, material],
+    }));
+  };
+
+  const materialGroups =
+    form.type === 'Curtains'
+      ? [{ label: 'Curtain materials', items: CURTAIN_MATERIALS, otherKey: 'otherCurtainMaterial' }]
+      : form.type === 'Blinds'
+        ? [{ label: 'Blind materials', items: BLIND_MATERIALS, otherKey: 'otherBlindMaterial' }]
+        : [
+            { label: 'Curtain materials', items: CURTAIN_MATERIALS, otherKey: 'otherCurtainMaterial' },
+            { label: 'Blind materials', items: BLIND_MATERIALS, otherKey: 'otherBlindMaterial' },
+          ];
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -65,16 +106,23 @@ export default function BookingModal({ open, onClose }) {
       setErrors(fieldErrors);
       return;
     }
+    const materialList = form.materials.length ? form.materials.join(', ') : '—';
     const message = [
       '*New Consultation Request — Elegant Curtains and Blinds*',
       '',
       `*Name:* ${form.name}`,
-      `*Email:* ${form.email}`,
+      `*Email:* ${form.email || '—'}`,
       `*Phone:* ${form.phone || '—'}`,
       `*Postcode:* ${form.postcode || '—'}`,
-      `*Approx. windows:* ${form.windows || '—'}`,
+      `*Number of windows:* ${form.windows || '—'}`,
       `*Project type:* ${form.type}`,
+      `*Other project type:* ${form.otherType || '—'}`,
+      `*Materials in mind:* ${materialList}`,
+      `*Other curtain material:* ${form.otherCurtainMaterial || '—'}`,
+      `*Other blind material:* ${form.otherBlindMaterial || '—'}`,
+      `*Motorized / remote controlled:* ${form.automation}`,
       `*Preferred callback:* ${form.time}`,
+      `*Selected reference:* ${form.source || '—'}`,
       '',
       '*Notes:*',
       form.notes || '—',
@@ -145,7 +193,7 @@ export default function BookingModal({ open, onClose }) {
                         className={inputCls(errors.name)}
                       />
                     </Field>
-                    <Field label="Email" required error={errors.email}>
+                    <Field label="Email" error={errors.email}>
                       <input
                         type="email"
                         value={form.email}
@@ -167,7 +215,7 @@ export default function BookingModal({ open, onClose }) {
                         className={inputCls()}
                       />
                     </Field>
-                    <Field label="Approx. windows">
+                    <Field label="Number of windows">
                       <input
                         type="number"
                         min="1"
@@ -179,7 +227,16 @@ export default function BookingModal({ open, onClose }) {
                     <Field label="Project type">
                       <select
                         value={form.type}
-                        onChange={onChange('type')}
+                        onChange={(event) => {
+                          const nextType = event.target.value;
+                          setForm((f) => ({
+                            ...f,
+                            type: nextType,
+                            materials: [],
+                            otherCurtainMaterial: '',
+                            otherBlindMaterial: '',
+                          }));
+                        }}
                         className={`${inputCls()} appearance-none pr-8`}
                       >
                         {PROJECT_TYPES.map((t) => (
@@ -189,6 +246,85 @@ export default function BookingModal({ open, onClose }) {
                         ))}
                       </select>
                     </Field>
+                    {form.type === 'Other' && (
+                      <Field label="Please mention" className="sm:col-span-2">
+                        <input
+                          value={form.otherType}
+                          onChange={onChange('otherType')}
+                          placeholder="Tell us what you have in mind"
+                          className={inputCls()}
+                        />
+                      </Field>
+                    )}
+                    <Field label="Materials in mind" className="sm:col-span-2">
+                      <div className="space-y-4">
+                        {materialGroups.map((group) => {
+                          const otherSelected = form.materials.includes(`${group.label}: Other`);
+                          return (
+                            <div key={group.label}>
+                              <p className="mb-2 font-serif italic text-xs text-warmwhite/55">
+                                {group.label}
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {group.items.map((material) => {
+                                  const value = `${group.label}: ${material}`;
+                                  const active = form.materials.includes(value);
+                                  return (
+                                    <button
+                                      type="button"
+                                      key={value}
+                                      onClick={() => toggleMaterial(value)}
+                                      className={`border px-3 py-2 text-[10px] uppercase tracking-widest2 transition-colors ${
+                                        active
+                                          ? 'border-champagne bg-champagne text-obsidian'
+                                          : 'border-champagne/35 text-warmwhite/75 hover:border-champagne'
+                                      }`}
+                                    >
+                                      {material}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              {otherSelected && (
+                                <input
+                                  value={form[group.otherKey]}
+                                  onChange={onChange(group.otherKey)}
+                                  placeholder={`Mention other ${group.label.toLowerCase()}`}
+                                  className={`${inputCls()} mt-3`}
+                                />
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </Field>
+                    <Field label="Motorized / remote controlled" className="sm:col-span-2">
+                      <div className="flex flex-wrap gap-2">
+                        {AUTOMATION_PREFS.map((pref) => (
+                          <button
+                            type="button"
+                            key={pref}
+                            onClick={() => setForm((f) => ({ ...f, automation: pref }))}
+                            className={`px-4 py-2 text-[11px] uppercase tracking-widest2 border transition-colors ${
+                              form.automation === pref
+                                ? 'bg-champagne text-obsidian border-champagne'
+                                : 'border-champagne/40 text-warmwhite/80 hover:border-champagne'
+                            }`}
+                          >
+                            {pref}
+                          </button>
+                        ))}
+                      </div>
+                    </Field>
+                    {form.source && (
+                      <Field label="Selected reference" className="sm:col-span-2">
+                        <input
+                          value={form.source}
+                          onChange={onChange('source')}
+                          className={inputCls()}
+                        />
+                      </Field>
+                    )}
                     <Field label="Preferred callback" className="sm:col-span-2">
                       <div className="flex flex-wrap gap-2">
                         {TIME_PREFS.map((t) => (
