@@ -21,7 +21,7 @@ export default function StackingFooter() {
           alt=""
           className="h-full w-full object-cover opacity-25"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-void/85 to-void" />
+        <div className="img-overlay absolute inset-0 bg-gradient-to-b from-void/90 via-void/85 to-void" />
       </div>
 
       {/* Champagne glow accent */}

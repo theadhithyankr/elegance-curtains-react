@@ -90,6 +90,11 @@ body {
   border-radius: 4px;
 }
 
+/* Hide image vignette/darkening overlays in light mode — images show clean */
+[data-theme='light'] .img-overlay {
+  display: none;
+}
+
 /* Tap-target feel on mobile */
 button,
 a {

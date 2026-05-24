@@ -148,7 +148,7 @@ export default function HorizontalPortfolio() {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
+              <div className="img-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
               <span className="absolute bottom-5 right-5 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
                 View
               </span>

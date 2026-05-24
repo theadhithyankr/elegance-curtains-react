@@ -105,7 +105,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                   }}
                 />
               </AnimatePresence>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-void/15" />
+              <div className="img-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-void/15" />
 
               {items.length > 1 && (
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">

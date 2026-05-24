@@ -199,7 +199,7 @@ export default function VideoShowcase() {
                 className="absolute inset-x-0 bottom-0 z-10"
               >
                 {/* Gradient base so controls remain legible over bright frames */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-void via-void/60 to-transparent" />
+                <div className="img-overlay pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-void via-void/60 to-transparent" />
 
                 <div className="relative px-4 pb-3 pt-8 sm:px-6 sm:pb-4 sm:pt-10">
                   {/* Seek bar */}
