@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://elegancecurtainsandblinds.com/sitemap.xml
+Sitemap: https://elegantcurtainsandblinds.shop/sitemap.xml
