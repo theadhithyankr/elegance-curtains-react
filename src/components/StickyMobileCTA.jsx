@@ -38,13 +38,13 @@ export default function StickyMobileCTA() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-[11px] uppercase tracking-widest2 text-warmwhite/80"
           >
-            <WhatsAppGlyph /> Chat on WhatsApp
+            <WhatsAppGlyph /> WhatsApp
           </a>
           <button
             onClick={openBooking}
             className="bg-champagne px-5 py-2.5 text-[11px] uppercase tracking-widest2 text-obsidian"
           >
-            Book Now
+            Book Home Visit
           </button>
         </motion.div>
       )}

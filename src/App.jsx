@@ -1,9 +1,11 @@
 import { BookingProvider } from './context/BookingContext.jsx';
 import Navigation from './components/Navigation.jsx';
 import Hero from './components/Hero.jsx';
+import TrustStrip from './components/TrustStrip.jsx';
 import Philosophy from './components/Philosophy.jsx';
 import Process from './components/Process.jsx';
 import OurCollections from './components/OurCollections.jsx';
+import WhyChooseUs from './components/WhyChooseUs.jsx';
 import FabricScrollytelling from './components/FabricScrollytelling.jsx';
 import BeforeAfter from './components/BeforeAfter.jsx';
 import VideoShowcase from './components/VideoShowcase.jsx';
@@ -29,7 +31,9 @@ export default function App() {
 
         <main id="main" tabIndex={-1} className="relative z-10 outline-none">
           <Hero />
+          <TrustStrip />
           <OurCollections />
+          <WhyChooseUs />
           <Philosophy />
           <FabricScrollytelling />
           <BeforeAfter />

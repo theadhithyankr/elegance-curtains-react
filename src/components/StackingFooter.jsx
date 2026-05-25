@@ -3,8 +3,7 @@ import MagneticButton from './MagneticButton.jsx';
 import { useBooking } from '../context/BookingContext.jsx';
 import { whatsappLink, WHATSAPP_DISPLAY, PHONE_NUMBER, PHONE_NUMBER_2, ADDRESS_LINE1, ADDRESS_LINE2 } from '../lib/contact.js';
 
-const FOOTER_IMAGE =
-  'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=2400&q=80';
+const FOOTER_IMAGE = '/hero.png';
 
 export default function StackingFooter() {
   const { openBooking } = useBooking();
@@ -53,7 +52,7 @@ export default function StackingFooter() {
         <div className="grid gap-8 border-t border-champagne/20 pt-8 text-sm font-light sm:gap-10 sm:pt-10 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-widest2 text-champagne/80">
-              Store
+              Studio
             </p>
             <p className="text-warmwhite/90">{ADDRESS_LINE1}</p>
             <p className="text-warmwhite/90">{ADDRESS_LINE2}</p>
@@ -92,7 +91,7 @@ export default function StackingFooter() {
                 onClick={openBooking}
                 className="border border-champagne px-5 py-3 text-[11px] uppercase tracking-widest2 text-champagne transition-colors hover:bg-champagne hover:text-obsidian sm:px-6"
               >
-                Book a Consultation
+                Book Home Visit
               </button>
             </MagneticButton>
           </div>

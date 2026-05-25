@@ -34,11 +34,12 @@ export default function BookingModal({ open, onClose, context }) {
   const validate = (f) => {
     const e = {};
     if (!f.name.trim()) e.name = 'Please tell us your name.';
+    if (!f.phone.trim()) e.phone = 'Please share a phone number.';
     if (f.email.trim() && !EMAIL_RE.test(f.email.trim())) e.email = 'That email looks off.';
     return e;
   };
   const formErrors = validate(form);
-  const canSubmit = !formErrors.name && !formErrors.email;
+  const canSubmit = !formErrors.name && !formErrors.phone && !formErrors.email;
 
   // Lock body scroll while modal is open
   useEffect(() => {
@@ -102,7 +103,7 @@ export default function BookingModal({ open, onClose, context }) {
   const onSubmit = (e) => {
     e.preventDefault();
     const fieldErrors = validate(form);
-    if (fieldErrors.name || fieldErrors.email) {
+    if (fieldErrors.name || fieldErrors.phone || fieldErrors.email) {
       setErrors(fieldErrors);
       return;
     }
@@ -175,11 +176,11 @@ export default function BookingModal({ open, onClose, context }) {
                     — Concierge Intake · via WhatsApp —
                   </p>
                   <h2 className="font-serif text-3xl leading-tight sm:text-4xl">
-                    Book a Consultation
+                    Book a Home Visit
                   </h2>
                   <p className="mt-3 text-sm font-light leading-relaxed text-warmwhite/70">
-                    Tell us about your space. On submit, your answers open in WhatsApp ready to send to our atelier at{' '}
-                    <span className="text-champagne">{WHATSAPP_DISPLAY}</span>. We reply within one working day.
+                    Start with your name and phone number. Your details open in WhatsApp ready to send to{' '}
+                    <span className="text-champagne">{WHATSAPP_DISPLAY}</span>; tap Send there to confirm.
                   </p>
 
                   <form
@@ -193,19 +194,20 @@ export default function BookingModal({ open, onClose, context }) {
                         className={inputCls(errors.name)}
                       />
                     </Field>
+                    <Field label="Phone" required error={errors.phone}>
+                      <input
+                        type="tel"
+                        value={form.phone}
+                        onChange={onChange('phone')}
+                        className={inputCls(errors.phone)}
+                      />
+                    </Field>
                     <Field label="Email" error={errors.email}>
                       <input
                         type="email"
                         value={form.email}
                         onChange={onChange('email')}
                         className={inputCls(errors.email)}
-                      />
-                    </Field>
-                    <Field label="Phone">
-                      <input
-                        value={form.phone}
-                        onChange={onChange('phone')}
-                        className={inputCls()}
                       />
                     </Field>
                     <Field label="Postcode">
@@ -362,8 +364,11 @@ export default function BookingModal({ open, onClose, context }) {
                         }`}
                       >
                         <WhatsAppGlyph />
-                        Send via WhatsApp
+                        Open WhatsApp
                       </button>
+                      <p className="max-w-sm text-center text-[11px] font-light leading-relaxed text-warmwhite/50">
+                        We do not send this automatically. WhatsApp opens with the message prepared, and you approve it by tapping Send.
+                      </p>
                     </div>
                   </form>
                 </>
@@ -377,7 +382,7 @@ export default function BookingModal({ open, onClose, context }) {
                   <p className="font-serif italic text-champagne">— WhatsApp opened —</p>
                   <h3 className="mt-4 font-serif text-3xl">Almost there, {form.name.split(' ')[0] || 'friend'}.</h3>
                   <p className="mt-4 text-sm font-light leading-relaxed text-warmwhite/70">
-                    Your enquiry is queued in WhatsApp — just tap{' '}
+                    Your enquiry is ready in WhatsApp. Tap{' '}
                     <span className="text-champagne">Send</span> to deliver it to our atelier at{' '}
                     <a
                       href={whatsappLink('Hello — I just sent an enquiry through your website.')}

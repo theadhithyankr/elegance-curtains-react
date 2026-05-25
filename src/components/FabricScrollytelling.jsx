@@ -160,8 +160,7 @@ export default function FabricScrollytelling() {
   return (
     <section
       id="fabrics"
-      className="relative bg-obsidian overflow-hidden"
-      style={{ height: '100svh' }}
+      className="relative min-h-[100dvh] bg-obsidian overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -195,7 +194,7 @@ export default function FabricScrollytelling() {
       </AnimatePresence>
 
       {/* Text content */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-6 py-10 sm:px-10 md:px-16 md:py-14">
+      <div className="relative z-10 flex min-h-[100dvh] flex-col justify-between px-6 py-10 sm:px-10 md:px-16 md:py-14">
 
         {/* Section label */}
         <p className="font-serif italic text-champagne text-xs sm:text-sm">

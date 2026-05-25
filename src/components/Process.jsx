@@ -34,6 +34,7 @@ export default function Process() {
 
   return (
     <section
+      id="process"
       ref={ref}
       className="relative bg-onyx py-24 px-6 sm:py-32 sm:px-10 md:py-40 md:px-16"
     >

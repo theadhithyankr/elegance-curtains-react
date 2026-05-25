@@ -1,10 +1,12 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { useBooking } from '../context/BookingContext.jsx';
 const HERO_BASE = '/hero.png';
 
 export default function Hero() {
   const ref = useRef(null);
   const reduced = useReducedMotion();
+  const { openBooking } = useBooking();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -34,7 +36,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] w-full overflow-hidden bg-obsidian"
+      className="relative min-h-[100dvh] w-full overflow-hidden bg-obsidian"
     >
       <motion.div
         style={{ y: imageY, scale: imageScale }}
@@ -82,17 +84,17 @@ export default function Hero() {
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex h-full flex-col items-center justify-end pb-16 text-warmwhite sm:pb-24"
+        className="relative z-10 flex min-h-[100dvh] flex-col items-center justify-end px-5 pb-12 text-warmwhite sm:pb-20"
       >
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.6, delay: textDelay, ease: [0.22, 1, 0.36, 1] }}
-          className="px-4 text-center font-serif text-[14vw] leading-[0.95] tracking-tight sm:text-[12vw] md:text-[8.5vw]"
+          className="max-w-5xl text-center font-serif text-[13vw] leading-[0.95] tracking-tight sm:text-[10vw] md:text-[7.4vw]"
         >
-          <span className="block">Light, draped</span>
+          <span className="block">Custom curtains</span>
           <span className="block italic font-light text-champagne">
-            with elegance.
+            measured at home.
           </span>
         </motion.h1>
 
@@ -100,17 +102,52 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: textDelay + 0.6, ease: 'easeOut' }}
-          className="mt-6 max-w-md px-8 text-center text-[13px] font-light leading-relaxed text-warmwhite/75 sm:mt-8 sm:text-sm"
+          className="mt-5 max-w-xl text-center text-sm font-light leading-relaxed text-warmwhite/78 sm:mt-7 sm:text-base"
         >
-          Curtains, blinds and window treatments —
-          <span className="font-serif italic text-champagne"> expertly chosen</span> and fitted for your home.
+          Curtains, blinds and window treatments in Kerala -
+          <span className="font-serif italic text-champagne"> selected, measured</span> and professionally fitted for your room.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: textDelay + 0.95, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-7 flex w-full max-w-lg flex-col gap-3 sm:mt-8 sm:flex-row sm:justify-center"
+        >
+          <button
+            onClick={() =>
+              openBooking({
+                sourceCategory: 'Hero',
+                sourceTitle: 'Free home visit',
+                projectType: 'Both',
+              })
+            }
+            className="bg-champagne px-6 py-3 text-[11px] uppercase tracking-widest2 text-obsidian transition-colors hover:bg-warmwhite active:translate-y-px"
+          >
+            Book Free Home Visit
+          </button>
+          <a
+            href="#collections"
+            className="border border-champagne/60 px-6 py-3 text-center text-[11px] uppercase tracking-widest2 text-champagne transition-colors hover:bg-champagne hover:text-obsidian active:translate-y-px"
+          >
+            View Collections
+          </a>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: textDelay + 1.25 }}
+          className="mt-4 text-center text-[10px] uppercase tracking-widest2 text-warmwhite/55"
+        >
+          Free home visit · Measurement · Installation
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: textDelay + 1.2 }}
-          className="mt-10 flex flex-col items-center gap-3 text-[10px] uppercase tracking-widest2 text-warmwhite/70 sm:mt-16"
+          transition={{ duration: 1, delay: textDelay + 1.45 }}
+          className="mt-8 flex flex-col items-center gap-3 text-[10px] uppercase tracking-widest2 text-warmwhite/60 sm:mt-12"
         >
           <span>Scroll</span>
           <motion.span

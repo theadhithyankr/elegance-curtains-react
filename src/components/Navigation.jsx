@@ -21,9 +21,10 @@ export default function Navigation() {
   const { openBooking } = useBooking();
 
   const links = [
-    { href: '#collections', label: 'Store' },
+    { href: '#collections', label: 'Collections' },
     { href: '#fabrics', label: 'Fabrics' },
     { href: '#installations', label: 'Installations' },
+    { href: '#process', label: 'Process' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -56,7 +57,7 @@ export default function Navigation() {
               onClick={openBooking}
               className="border border-champagne px-5 py-2 text-[11px] uppercase tracking-widest2 text-champagne transition-colors hover:bg-champagne hover:text-obsidian"
             >
-              Book a Consultation
+              Book Home Visit
             </button>
           </MagneticButton>
 
@@ -109,7 +110,7 @@ export default function Navigation() {
                 }}
                 className="mt-3 self-start border border-champagne px-5 py-3 text-[11px] uppercase tracking-widest2 text-champagne hover:bg-champagne hover:text-obsidian transition-colors"
               >
-                Book a Consultation
+                Book Home Visit
               </button>
             </nav>
           </motion.div>
@@ -118,4 +119,3 @@ export default function Navigation() {
     </motion.header>
   );
 }
-
