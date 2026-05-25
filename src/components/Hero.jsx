@@ -1,12 +1,10 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { useBooking } from '../context/BookingContext.jsx';
 const HERO_BASE = '/hero.png';
 
 export default function Hero() {
   const ref = useRef(null);
   const reduced = useReducedMotion();
-  const { openBooking } = useBooking();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -94,7 +92,7 @@ export default function Hero() {
         >
           <span className="block">Custom curtains</span>
           <span className="block italic font-light text-champagne">
-            measured at home.
+            and blinds.
           </span>
         </motion.h1>
 
@@ -104,49 +102,23 @@ export default function Hero() {
           transition={{ duration: 1.4, delay: textDelay + 0.6, ease: 'easeOut' }}
           className="mt-5 max-w-xl text-center text-sm font-light leading-relaxed text-warmwhite/78 sm:mt-7 sm:text-base"
         >
-          Curtains, blinds and window treatments in Kerala -
+          Curtains, blinds and window treatments -
           <span className="font-serif italic text-champagne"> selected, measured</span> and professionally fitted for your room.
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: textDelay + 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-7 flex w-full max-w-lg flex-col gap-3 sm:mt-8 sm:flex-row sm:justify-center"
-        >
-          <button
-            onClick={() =>
-              openBooking({
-                sourceCategory: 'Hero',
-                sourceTitle: 'Free home visit',
-                projectType: 'Both',
-              })
-            }
-            className="bg-champagne px-6 py-3 text-[11px] uppercase tracking-widest2 text-obsidian transition-colors hover:bg-warmwhite active:translate-y-px"
-          >
-            Book Free Home Visit
-          </button>
-          <a
-            href="#collections"
-            className="border border-champagne/60 px-6 py-3 text-center text-[11px] uppercase tracking-widest2 text-champagne transition-colors hover:bg-champagne hover:text-obsidian active:translate-y-px"
-          >
-            View Collections
-          </a>
-        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: textDelay + 1.25 }}
-          className="mt-4 text-center text-[10px] uppercase tracking-widest2 text-warmwhite/55"
+          transition={{ duration: 1, delay: textDelay + 1 }}
+          className="mt-5 text-center text-[10px] uppercase tracking-widest2 text-warmwhite/55"
         >
-          Free home visit · Measurement · Installation
+          Selection · Measurement · Installation
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: textDelay + 1.45 }}
+          transition={{ duration: 1, delay: textDelay + 1.2 }}
           className="mt-8 flex flex-col items-center gap-3 text-[10px] uppercase tracking-widest2 text-warmwhite/60 sm:mt-12"
         >
           <span>Scroll</span>

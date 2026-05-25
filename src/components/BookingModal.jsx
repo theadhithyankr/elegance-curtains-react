@@ -27,6 +27,7 @@ export default function BookingModal({ open, onClose, context }) {
     automation: 'No',
     time: 'Morning',
     source: '',
+    sourceImage: '',
     notes: '',
   });
   const [errors, setErrors] = useState({});
@@ -65,13 +66,17 @@ export default function BookingModal({ open, onClose, context }) {
   useEffect(() => {
     if (!open) return;
     if (!context) {
-      setForm((f) => ({ ...f, source: '' }));
+      setForm((f) => ({ ...f, source: '', sourceImage: '' }));
       return;
     }
     setForm((f) => ({
       ...f,
       type: context.projectType || f.type,
+      materials: Array.isArray(context.materials) ? context.materials : f.materials,
+      automation: context.automation || f.automation,
       source: [context.sourceCategory, context.sourceTitle].filter(Boolean).join(' · '),
+      sourceImage: context.sourceImage || '',
+      notes: f.notes.trim() ? f.notes : context.notesSeed || f.notes,
     }));
   }, [open, context]);
 
@@ -124,6 +129,7 @@ export default function BookingModal({ open, onClose, context }) {
       `*Motorized / remote controlled:* ${form.automation}`,
       `*Preferred callback:* ${form.time}`,
       `*Selected reference:* ${form.source || '—'}`,
+      `*Reference image:* ${form.sourceImage || '—'}`,
       '',
       '*Notes:*',
       form.notes || '—',
@@ -176,7 +182,7 @@ export default function BookingModal({ open, onClose, context }) {
                     — Concierge Intake · via WhatsApp —
                   </p>
                   <h2 className="font-serif text-3xl leading-tight sm:text-4xl">
-                    Book a Home Visit
+                    Start a Project
                   </h2>
                   <p className="mt-3 text-sm font-light leading-relaxed text-warmwhite/70">
                     Start with your name and phone number. Your details open in WhatsApp ready to send to{' '}
@@ -323,6 +329,15 @@ export default function BookingModal({ open, onClose, context }) {
                         <input
                           value={form.source}
                           onChange={onChange('source')}
+                          className={inputCls()}
+                        />
+                      </Field>
+                    )}
+                    {form.sourceImage && (
+                      <Field label="Reference image" className="sm:col-span-2">
+                        <input
+                          value={form.sourceImage}
+                          onChange={onChange('sourceImage')}
                           className={inputCls()}
                         />
                       </Field>

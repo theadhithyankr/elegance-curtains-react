@@ -44,7 +44,7 @@ export default function StickyMobileCTA() {
             onClick={openBooking}
             className="bg-champagne px-5 py-2.5 text-[11px] uppercase tracking-widest2 text-obsidian"
           >
-            Book Home Visit
+            Start Project
           </button>
         </motion.div>
       )}

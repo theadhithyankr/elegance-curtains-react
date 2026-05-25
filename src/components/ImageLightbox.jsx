@@ -45,11 +45,15 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
   if (!item) return null;
 
   const handleBook = () => {
-    openBooking({
-      sourceTitle: item.title || item.name,
-      sourceCategory: item.category,
-      projectType: item.category === 'Blinds' ? 'Blinds' : item.category === 'Curtains' ? 'Curtains' : '',
-    });
+    openBooking(
+      item.bookingContext || {
+        sourceTitle: item.title || item.name,
+        sourceCategory: item.category,
+        sourceImage: item.image || item.img || '',
+        projectType:
+          item.category === 'Blinds' ? 'Blinds' : item.category === 'Curtains' ? 'Curtains' : '',
+      }
+    );
     onClose();
   };
 
@@ -129,7 +133,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
               )}
             </div>
 
-            <aside className="flex max-h-[36svh] flex-col justify-between gap-8 overflow-y-auto px-6 py-7 sm:max-h-none sm:px-8 sm:py-10">
+            <aside className="flex max-h-[36svh] flex-col justify-between gap-8 overflow-y-auto px-6 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] pt-7 sm:max-h-none sm:px-8 sm:py-10">
               <div>
                 <p className="font-sans text-[10px] uppercase tracking-widest2 text-champagne/80">
                   {item.category || 'Preview'} · {String(index + 1).padStart(2, '0')} /{' '}
@@ -149,7 +153,7 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                   onClick={handleBook}
                   className="bg-champagne px-6 py-3 text-[11px] uppercase tracking-widest2 text-obsidian transition-colors hover:bg-warmwhite"
                 >
-                  Book Consultation
+                  Ask about this
                 </button>
                 <p className="text-[11px] leading-relaxed text-warmwhite/45">
                   We will include this selection in your enquiry so the consultation starts with the right reference.

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 
 const ITEMS = [
-  { label: 'Kerala service', detail: 'Home visits around Kodakara and nearby areas' },
-  { label: 'Free home visit', detail: 'We see the light, wall finish and window size in person' },
+  { label: 'Curtains & blinds', detail: 'Soft drapes, compact blinds and layered window treatments' },
+  { label: 'Guided selection', detail: 'We help match privacy, daylight, fabric weight and finish' },
   { label: 'Custom measured', detail: 'Curtains, blinds and tracks sized for your room' },
   { label: 'Installed cleanly', detail: 'Professional fitting with hardware aligned on site' },
 ];

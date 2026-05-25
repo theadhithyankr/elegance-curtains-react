@@ -91,7 +91,7 @@ export default function StackingFooter() {
                 onClick={openBooking}
                 className="border border-champagne px-5 py-3 text-[11px] uppercase tracking-widest2 text-champagne transition-colors hover:bg-champagne hover:text-obsidian sm:px-6"
               >
-                Book Home Visit
+                Start a Project
               </button>
             </MagneticButton>
           </div>
