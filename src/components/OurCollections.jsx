@@ -53,6 +53,7 @@ const PRODUCTS = [
     category: 'Curtains',
     projectType: 'Curtains',
     image: '/products/layered-curtain.png',
+    imageFit: 'contain',
     desc: 'Sheer and blackout layers combined for privacy, daylight and night use.',
     bestFor: 'Rooms that need soft daylight by day and privacy at night',
     benefits: ['Day-night use', 'Flexible privacy', 'Premium depth'],
@@ -193,6 +194,8 @@ const fadeUp = {
 };
 
 function ProductCard({ product, index, onPreview, onAsk }) {
+  const preserveFullImage = product.imageFit === 'contain';
+
   return (
     <motion.div
       custom={index}
@@ -213,8 +216,10 @@ function ProductCard({ product, index, onPreview, onAsk }) {
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="h-full w-full object-cover"
-            whileHover={{ scale: 1.05 }}
+            className={`h-full w-full ${
+              preserveFullImage ? 'object-contain p-3 sm:p-4' : 'object-cover'
+            }`}
+            whileHover={{ scale: preserveFullImage ? 1.01 : 1.05 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           />
           <span className="absolute bottom-3 right-3 border border-champagne/45 bg-void/65 px-3 py-1.5 text-[10px] uppercase tracking-widest2 text-champagne opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">

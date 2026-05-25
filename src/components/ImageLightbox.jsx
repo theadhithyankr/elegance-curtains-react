@@ -44,6 +44,8 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
 
   if (!item) return null;
 
+  const preserveFullImage = item.imageFit === 'contain';
+
   const handleBook = () => {
     openBooking(
       item.bookingContext || {
@@ -100,7 +102,9 @@ export default function ImageLightbox({ open, items, index, onClose, onIndexChan
                   exit="exit"
                   src={item.image || item.img}
                   alt={item.title || item.name}
-                  className="h-full w-full object-cover"
+                  className={`h-full w-full ${
+                    preserveFullImage ? 'object-contain p-4 sm:p-6' : 'object-cover'
+                  }`}
                   loading="eager"
                   decoding="async"
                   onPanEnd={(_, info) => {
