@@ -1,4 +1,4 @@
-# Elegant
+# Elegance Curtains & Blinds
 
 ## Overview
 Elegant is a premium website for Elegance Curtains & Blinds. It uses a polished React and Vite frontend with animated sections, product collection storytelling, booking context, visual showcases, and mobile contact actions.
