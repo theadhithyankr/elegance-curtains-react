@@ -71,6 +71,15 @@ create policy "works public read"
   to anon
   using (true);
 
+-- Authenticated inserts/upserts echo the row back (return=representation
+-- is PostgREST's default) — without a SELECT policy for the authenticated
+-- role, saves fail with "new row violates row-level security policy".
+drop policy if exists "works admin read" on public.works;
+create policy "works admin read"
+  on public.works for select
+  to authenticated
+  using (true);
+
 drop policy if exists "works admin insert" on public.works;
 create policy "works admin insert"
   on public.works for insert
@@ -94,6 +103,12 @@ drop policy if exists "work_media public read" on public.work_media;
 create policy "work_media public read"
   on public.work_media for select
   to anon
+  using (true);
+
+drop policy if exists "work_media admin read" on public.work_media;
+create policy "work_media admin read"
+  on public.work_media for select
+  to authenticated
   using (true);
 
 drop policy if exists "work_media admin insert" on public.work_media;

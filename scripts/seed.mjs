@@ -100,7 +100,10 @@ const toSeed = [
 ];
 
 const env = loadEnv();
-const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
+const supabase = createClient(
+  env.SUPABASE_URL || env.VITE_SUPABASE_URL,
+  env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 async function main() {
   const { count, error: countError } = await supabase
