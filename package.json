@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seed": "node scripts/seed.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
     "framer-motion": "^11.3.0",
     "lenis": "^1.3.23",
     "react": "^18.3.1",

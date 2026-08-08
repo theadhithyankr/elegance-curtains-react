@@ -1,9 +1,26 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useWorks } from '../hooks/useWorks.js';
 
-const VIDEO_SRC = '/E1-web.mp4';
+const FEATURED = { id: 'featured-testimonial', title: 'Customer Testimonial', src: '/E1-web.mp4', captions: true };
 
 export default function VideoShowcase() {
+  const { works } = useWorks();
+  const videos = useMemo(() => {
+    const workVideos = works.flatMap((work) =>
+      work.videos.map((media) => ({
+        id: media.id,
+        title: media.title || work.title,
+        src: media.url,
+        captions: false,
+      }))
+    );
+    return [FEATURED, ...workVideos];
+  }, [works]);
+
+  const [active, setActive] = useState(0);
+  const activeVideo = videos[active] || FEATURED;
+
   const videoRef = useRef(null);
   const wrapRef = useRef(null);
   const hideTimer = useRef(null);
@@ -17,6 +34,16 @@ export default function VideoShowcase() {
   const [hovering, setHovering] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+
+  // Reset player state when switching videos
+  useEffect(() => {
+    setHasStarted(false);
+    setCurrent(0);
+    setDuration(0);
+    setPlaying(false);
+    const v = videoRef.current;
+    if (v) v.currentTime = 0;
+  }, [active]);
 
   // Pause when fully scrolled out of view
   useEffect(() => {
@@ -145,7 +172,8 @@ export default function VideoShowcase() {
         >
           <video
             ref={videoRef}
-            src={VIDEO_SRC}
+            key={activeVideo.src}
+            src={activeVideo.src}
             playsInline
             muted={muted}
             preload="metadata"
@@ -160,13 +188,15 @@ export default function VideoShowcase() {
             onEnded={() => setPlaying(false)}
             className="absolute inset-0 h-full w-full cursor-pointer object-cover"
           >
-            <track
-              kind="captions"
-              src="/testimonial.vtt"
-              srcLang="en"
-              label="English captions"
-              default
-            />
+            {activeVideo.captions && (
+              <track
+                kind="captions"
+                src="/testimonial.vtt"
+                srcLang="en"
+                label="English captions"
+                default
+              />
+            )}
           </video>
 
           {/* Big centered play button — only before first start */}
@@ -224,7 +254,7 @@ export default function VideoShowcase() {
                     </div>
                     <div className="hidden items-center gap-3 sm:flex">
                       <span className="text-[10px] uppercase tracking-widest2 text-champagne/70">
-                        elegants · Testimonial
+                        elegants · {activeVideo.title}
                       </span>
                       <CtrlButton onClick={toggleFullscreen} aria-label="Toggle fullscreen">
                         {fullscreen ? <ExitFullIcon /> : <EnterFullIcon />}
@@ -244,6 +274,53 @@ export default function VideoShowcase() {
           </AnimatePresence>
         </motion.div>
 
+        {videos.length > 1 && (
+          <div className="mt-10">
+            <div className="mb-5 flex items-end justify-between gap-4">
+              <h3 className="font-serif text-2xl leading-tight text-warmwhite sm:text-3xl">
+                More from our <span className="italic font-light text-champagne">works.</span>
+              </h3>
+              <p className="hidden text-[10px] uppercase tracking-widest2 text-warmwhite/40 sm:block">
+                {String(videos.length - 1).padStart(2, '0')} videos
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {videos.map((video, i) => (
+                <button
+                  key={video.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  className={`group overflow-hidden bg-coal text-left ring-1 transition-colors ${
+                    i === active ? 'ring-champagne' : 'ring-champagne/15 hover:ring-champagne/50'
+                  }`}
+                >
+                  <span className="relative block aspect-video overflow-hidden">
+                    <video
+                      src={video.src}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-void/30 opacity-0 transition-opacity group-hover:opacity-100">
+                      <PlayIcon className="h-6 w-6 translate-x-0.5 text-champagne" />
+                    </span>
+                  </span>
+                  <span
+                    className={`block border-t px-3 py-2.5 text-[11px] leading-snug ${
+                      i === active
+                        ? 'border-champagne text-champagne'
+                        : 'border-champagne/15 text-warmwhite/70'
+                    }`}
+                  >
+                    {video.title}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
